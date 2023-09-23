@@ -1,0 +1,20 @@
+version: '2.2'
+services:
+  novnc:  
+    image: theasp/novnc:latest
+    restart: always
+    env_file:
+      - novnc.env
+    ports:
+      - "9000:8080"
+    networks:
+       x11:
+          ipv4_address: "172.18.0.10"
+
+networks:
+    x11:
+       enable_ipv6: false
+       ipam:
+          driver: default
+          config:
+              - subnet: "172.18.0.0/16"
